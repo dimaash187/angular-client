@@ -52,9 +52,6 @@ export class ContactComponent implements OnInit {
   data: any;
   isLoading: boolean;
 
-  // mesageEvent = new EventEmitter<number>();
-  // mesageEvent: EventEmitter<number>;
-
   constructor(private apiService: ApiService) {
 
     this.argument = "1";
@@ -70,9 +67,7 @@ export class ContactComponent implements OnInit {
    */
   processForm() {
     console.log("processForm");
-    // const allInfo = `My name is ${this.name}. My email is ${this.email}. My message is ${this.message}`;
-    // alert(allInfo);
-    
+   
     this.isLoading = true;
     this.apiService.getFactorial(parseInt(this.argument))
         .subscribe(
@@ -80,18 +75,14 @@ export class ContactComponent implements OnInit {
             console.log(res)
             this.data = res;
             this.isLoading = false;
-            // this.mesageEvent.emit(this.data)
              this.apiService.raiseEvent(this.data);
             },
             err => {
-                // this.uiStateStore.endBackendAction();
               this.isLoading = false;
               console.log('err');
               console.log(err);
             }
         );    
-    
-    // console.log(this.data);
  }  
 
 }
