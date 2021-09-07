@@ -75,7 +75,18 @@ export class ContactComponent implements OnInit {
             console.log(res)
             this.data = res;
             this.isLoading = false;
-             this.apiService.raiseEvent(this.data);
+
+            this.apiService.hitCounter()
+              .subscribe(
+                res2 => {
+                    console.log(res2)
+                    this.apiService.raiseEvent(this.data);
+                  },
+                  err => {
+                    console.log('err');
+                    console.log(err);
+                  }
+              );                 
             },
             err => {
               this.isLoading = false;
